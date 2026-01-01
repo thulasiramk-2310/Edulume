@@ -384,7 +384,10 @@ const DiscussionDetailPage: React.FC = () => {
 
   const handleSubmitReply = async (e: React.FormEvent) => {
     e.preventDefault();
+    await submitReplyAction();
+  };
 
+  const submitReplyAction = async () => {
     if (!currentUser || !replyingTo) {
       return;
     }
@@ -422,7 +425,10 @@ const DiscussionDetailPage: React.FC = () => {
 
   const handleSubmitAnswer = async (e: React.FormEvent) => {
     e.preventDefault();
+    await submitAnswerAction();
+  };
 
+  const submitAnswerAction = async () => {
     if (!currentUser) {
       navigate("/auth");
       return;
@@ -699,6 +705,12 @@ const DiscussionDetailPage: React.FC = () => {
                   placeholder="Write your answer..."
                   className="alien-input w-full h-32 resize-none"
                   rows={6}
+                  onKeyDown={(e) => {
+                    if ((e.ctrlKey || e.metaKey) && e.key === "Enter" && !submittingAnswer) {
+                      e.preventDefault();
+                      handleSubmitAnswer(new Event('submit') as any);
+                    }
+                  }}
                 />
 
                 {/* Image Upload */}
@@ -1022,6 +1034,12 @@ const DiscussionDetailPage: React.FC = () => {
                                 className="alien-input w-full h-20 resize-none"
                                 rows={3}
                                 replyToUsername={replyToUsername}
+                                onKeyDown={(e) => {
+                                  if ((e.ctrlKey || e.metaKey) && e.key === "Enter" && !submittingReply) {
+                                    e.preventDefault();
+                                    handleSubmitReply(new Event('submit') as any);
+                                  }
+                                }}
                               />
 
                               {/* Image Upload for Reply */}

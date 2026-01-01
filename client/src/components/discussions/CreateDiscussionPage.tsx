@@ -83,7 +83,10 @@ const CreateDiscussionPage: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    await submitDiscussionAction();
+  };
 
+  const submitDiscussionAction = async () => {
     if (!title.trim() || !content.trim() || !category) {
       setError("Please fill in all required fields");
       return;
@@ -186,6 +189,12 @@ const CreateDiscussionPage: React.FC = () => {
               <textarea
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
+                onKeyDown={(e) => {
+                  if ((e.ctrlKey || e.metaKey) && e.key === "Enter" && !loading) {
+                    e.preventDefault();
+                    submitDiscussionAction();
+                  }
+                }}
                 className="alien-input w-full h-40 resize-none"
                 placeholder="Provide more details about your question. Include what you've tried, what you expect, and any relevant context..."
                 required
