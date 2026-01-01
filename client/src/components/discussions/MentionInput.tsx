@@ -72,7 +72,8 @@ const MentionInput: React.FC<MentionInputProps> = ({
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     // Forward to parent first so parent can handle global shortcuts (Ctrl/Cmd+Enter)
-    if (onKeyDown) onKeyDown(e);
+    onKeyDown?.(e);
+    
     if (showSuggestions && suggestions.length > 0) {
       switch (e.key) {
         case "ArrowDown":
@@ -156,10 +157,7 @@ const MentionInput: React.FC<MentionInputProps> = ({
         ref={textareaRef}
         value={value}
         onChange={handleInputChange}
-        onKeyDown={(e) => {
-          handleKeyDown(e);
-          if (onKeyDown) onKeyDown(e);
-        }}
+        onKeyDown={handleKeyDown}
         placeholder={placeholder}
         className={className}
         rows={rows}

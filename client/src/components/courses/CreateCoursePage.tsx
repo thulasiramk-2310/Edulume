@@ -194,7 +194,7 @@ const CreateCoursePage: React.FC = () => {
                   onKeyDown={(e) => {
                     if ((e.ctrlKey || e.metaKey) && e.key === "Enter" && !isGenerating) {
                       e.preventDefault();
-                      handleGenerateOutline(new Event('submit') as any);
+                      generateOutlineAction();
                     }
                   }}
                   placeholder="e.g., React.js for Beginners, Digital Marketing Fundamentals, Python Data Science..."
@@ -264,6 +264,12 @@ const CreateCoursePage: React.FC = () => {
                   onChange={(e) =>
                     setOutline({ ...outline, description: e.target.value })
                   }
+                  onKeyDown={(e) => {
+                    if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+                      e.preventDefault();
+                      setStep(3);
+                    }
+                  }}
                   rows={3}
                   className="w-full px-4 py-3 bg-royal-black border border-smoke-light rounded-lg text-white focus:outline-none focus:border-alien-green focus:ring-1 focus:ring-alien-green resize-none"
                 />
@@ -418,19 +424,11 @@ const CreateCoursePage: React.FC = () => {
               >
                 Back to Edit
               </button>
-              <div
-                onKeyDown={(e) => {
-                  if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
-                    e.preventDefault();
-                    handleCreateCourse();
-                  }
-                }}
+              <button
+                onClick={handleCreateCourse}
+                disabled={isCreating}
+                className="px-6 py-3 bg-alien-green text-royal-black rounded-lg font-semibold hover:bg-alien-green/90 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2 shadow-alien-glow"
               >
-                <button
-                  onClick={handleCreateCourse}
-                  disabled={isCreating}
-                  className="px-6 py-3 bg-alien-green text-royal-black rounded-lg font-semibold hover:bg-alien-green/90 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2 shadow-alien-glow"
-                >
                 {isCreating ? (
                   <>
                     <Loader2 className="animate-spin" size={20} />
@@ -441,8 +439,7 @@ const CreateCoursePage: React.FC = () => {
                     <span>Create Course</span>
                   </>
                 )}
-                </button>
-              </div>
+              </button>
             </div>
           </div>
         )}

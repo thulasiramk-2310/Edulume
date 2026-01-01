@@ -708,7 +708,7 @@ const DiscussionDetailPage: React.FC = () => {
                   onKeyDown={(e) => {
                     if ((e.ctrlKey || e.metaKey) && e.key === "Enter" && !submittingAnswer) {
                       e.preventDefault();
-                      handleSubmitAnswer(new Event('submit') as any);
+                      submitAnswerAction();
                     }
                   }}
                 />
@@ -1037,7 +1037,7 @@ const DiscussionDetailPage: React.FC = () => {
                                 onKeyDown={(e) => {
                                   if ((e.ctrlKey || e.metaKey) && e.key === "Enter" && !submittingReply) {
                                     e.preventDefault();
-                                    handleSubmitReply(new Event('submit') as any);
+                                    submitReplyAction();
                                   }
                                 }}
                               />
