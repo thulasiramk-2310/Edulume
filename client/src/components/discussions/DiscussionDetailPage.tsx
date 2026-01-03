@@ -415,6 +415,9 @@ const DiscussionDetailPage: React.FC = () => {
       console.log("✅ Reply submitted successfully");
       // Reset form
       handleCancelReply();
+      
+      // Refresh the discussion to show the new reply
+      await fetchDiscussion();
     } catch (err: any) {
       console.error("❌ Reply submission failed:", err);
       setError(err.response?.data?.error || "Failed to submit reply");
@@ -454,6 +457,9 @@ const DiscussionDetailPage: React.FC = () => {
       // Reset form
       setAnswerContent("");
       setAnswerImages([]);
+      
+      // Refresh the discussion to show the new answer
+      await fetchDiscussion();
     } catch (err: any) {
       console.error("❌ Answer submission failed:", err);
       setError(err.response?.data?.error || "Failed to submit answer");
