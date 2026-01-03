@@ -326,23 +326,28 @@ const CreateDiscussionPage: React.FC = () => {
             )}
 
             {/* Submit Button */}
-            <div className="flex justify-end space-x-4">
-              <button
-                type="button"
-                onClick={() => navigate("/discussions")}
-                className="px-6 py-3 border border-smoke-light text-gray-400 rounded-lg hover:border-alien-green hover:text-alien-green transition-all duration-300"
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                disabled={
-                  loading || !title.trim() || !content.trim() || !category
-                }
-                className="alien-button px-6 py-3 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {loading ? "Creating..." : "Post Question"}
-              </button>
+            <div className="flex justify-between items-center">
+              <p className="text-xs text-gray-500">
+                Tip: Press <kbd className="px-1.5 py-0.5 text-xs bg-smoke-light rounded border border-smoke-dark">Ctrl</kbd> + <kbd className="px-1.5 py-0.5 text-xs bg-smoke-light rounded border border-smoke-dark">Enter</kbd> to post
+              </p>
+              <div className="flex space-x-4">
+                <button
+                  type="button"
+                  onClick={() => navigate("/discussions")}
+                  className="px-6 py-3 border border-smoke-light text-gray-400 rounded-lg hover:border-alien-green hover:text-alien-green transition-all duration-300"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={
+                    loading || !title.trim() || !content.trim() || !category
+                  }
+                  className="alien-button px-6 py-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {loading ? "Creating..." : "Post Question"}
+                </button>
+              </div>
             </div>
           </form>
         </div>

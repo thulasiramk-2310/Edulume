@@ -770,7 +770,10 @@ const DiscussionDetailPage: React.FC = () => {
                   </div>
                 )}
 
-                <div className="flex justify-end">
+                <div className="flex justify-between items-center">
+                  <p className="text-xs text-gray-500">
+                    Tip: Press <kbd className="px-1.5 py-0.5 text-xs bg-smoke-light rounded border border-smoke-dark">Ctrl</kbd> + <kbd className="px-1.5 py-0.5 text-xs bg-smoke-light rounded border border-smoke-dark">Enter</kbd> to submit
+                  </p>
                   <button
                     type="submit"
                     disabled={!answerContent.trim() || submittingAnswer}
@@ -1083,25 +1086,30 @@ const DiscussionDetailPage: React.FC = () => {
                                 </div>
 
                                 {/* Form Actions */}
-                                <div className="flex items-center space-x-2">
-                                  <button
-                                    type="button"
-                                    onClick={handleCancelReply}
-                                    className="px-3 py-2 text-sm text-gray-400 hover:text-gray-300 transition-colors duration-300"
-                                  >
-                                    Cancel
-                                  </button>
-                                  <button
-                                    type="submit"
-                                    disabled={
-                                      !replyContent.trim() || submittingReply
-                                    }
-                                    className="px-4 py-2 bg-alien-green text-black text-sm font-medium rounded hover:bg-alien-green/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
-                                  >
-                                    {submittingReply
-                                      ? "Posting..."
-                                      : "Post Reply"}
-                                  </button>
+                                <div className="flex flex-col space-y-2">
+                                  <p className="text-xs text-gray-500">
+                                    Tip: Press <kbd className="px-1.5 py-0.5 text-xs bg-smoke-light rounded border border-smoke-dark">Ctrl</kbd> + <kbd className="px-1.5 py-0.5 text-xs bg-smoke-light rounded border border-smoke-dark">Enter</kbd> to submit
+                                  </p>
+                                  <div className="flex items-center space-x-2 justify-end">
+                                    <button
+                                      type="button"
+                                      onClick={handleCancelReply}
+                                      className="px-3 py-2 text-sm text-gray-400 hover:text-gray-300 transition-colors duration-300"
+                                    >
+                                      Cancel
+                                    </button>
+                                    <button
+                                      type="submit"
+                                      disabled={
+                                        !replyContent.trim() || submittingReply
+                                      }
+                                      className="px-4 py-2 bg-alien-green text-black text-sm font-medium rounded hover:bg-alien-green/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+                                    >
+                                      {submittingReply
+                                        ? "Posting..."
+                                        : "Post Reply"}
+                                    </button>
+                                  </div>
                                 </div>
                               </div>
 

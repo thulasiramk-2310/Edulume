@@ -201,6 +201,9 @@ const CreateCoursePage: React.FC = () => {
                   className="w-full px-4 py-3 bg-royal-black border border-smoke-light rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-alien-green focus:ring-1 focus:ring-alien-green"
                   required
                 />
+                <p className="text-xs text-gray-500 mt-2">
+                  Tip: Press <kbd className="px-1.5 py-0.5 text-xs bg-smoke-light rounded border border-smoke-dark">Ctrl</kbd> + <kbd className="px-1.5 py-0.5 text-xs bg-smoke-light rounded border border-smoke-dark">Enter</kbd> to generate
+                </p>
               </div>
 
               <div className="text-center">
